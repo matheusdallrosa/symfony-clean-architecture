@@ -1,0 +1,30 @@
+version: "3"
+services:
+    nginx:
+        #env_file:
+        #    - .env
+        build:
+            context: .
+            dockerfile: nginx/Dockerfile
+        image: mus-nginx
+        depends_on:
+            - php-fpm
+        ports:
+            - 8080:80
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - .:/var/www/html:cached
+            - ./files:/mnt/files
+
+    php-fpm:
+        #env_file:
+        #    - .env
+        build:
+            context: .
+            dockerfile: php-fpm/Dockerfile
+        image: mus-php-fpm
+        ports:
+            - "9000:9000"
+        volumes:
+            - .:/var/www/html:cached
+            - ./files:/mnt/files
