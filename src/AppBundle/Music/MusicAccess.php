@@ -3,34 +3,32 @@
 
 namespace AppBundle\Music;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Mus\Music\Entity\Music;
 use Mus\Music\Gateway\MusicAccessGateway;
 
 class MusicAccess implements MusicAccessGateway {
 
+    private $entityManager;
+
+    private $musicRepository;
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+        $this->musicRepository = $entityManager->getRepository(Music::class);
+    }
+
     public function save(Music $music): Music
     {
-        $reflection = new \ReflectionClass(Music::class);
-        $reflectionProperty = $reflection->getProperty("id");
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($music, 1);
+        $this->entityManager->persist($music);
+
+        $this->entityManager->flush();
+
         return $music;
     }
 
     public function findById(int $id): ?Music
     {
-        if($id !== 1){
-            return null;
-        }
-        $music = new Music(
-            1,
-            "Stella was a diver and she was always down",
-            "She was alright but she sea was so airtight, she broke away..."
-        );
-        $reflection = new \ReflectionClass(Music::class);
-        $reflectionProperty = $reflection->getProperty("id");
-        $reflectionProperty->setAccessible(true);
-        $reflectionProperty->setValue($music, 1);
-        return $music;
+        return $this->musicRepository->findOneBy([ 'id' => $id ]);
     }
 }
