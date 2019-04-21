@@ -25,4 +25,11 @@ class CreateMusicResponseDto extends MusicDto {
     {
         return $this->id;
     }
+
+    public function toArray(): array
+    {
+        $fields = parent::toArray();
+        $fields['id'] = $this->id;
+        return $fields;
+    }
 }
