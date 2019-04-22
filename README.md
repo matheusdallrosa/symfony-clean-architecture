@@ -9,15 +9,16 @@ on an application for managing music.
 - Routing
 - Persistence
 
-##### Tests
-    ./vendor/bin/simple-phpunit 
-
 ##### Steps to use the system in dev mode:
 
--     docker-compose up
-Inside the php-fpm container make: 
-   -     php bin/console doctrine:schema:create
-   -     chmod 777 var/data/data.sqlite 
+     docker-compose up
+Inside the php-fpm container make:
+ 
+     php bin/console doctrine:schema:create
+     chmod 777 var/data/data.sqlite 
+
+##### Tests
+    ./vendor/bin/simple-phpunit 
 
 ##### Routes:
 
