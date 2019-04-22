@@ -14,8 +14,8 @@ on an application for managing music.
 
 ##### Steps to use the system in dev mode:
 
-- docker-compose up
-- Inside the php-fpm container make: 
+-     docker-compose up
+Inside the php-fpm container make: 
    -     php bin/console doctrine:schema:create
    -     chmod 777 var/data/data.sqlite 
 
