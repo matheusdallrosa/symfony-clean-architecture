@@ -5,7 +5,7 @@ This project is an attempt to use the Clean Architecture
 on an application for managing music. 
 
 I've made an [UML diagram](https://drive.google.com/file/d/1p9PqT0Gi2mxGQcs3BLCn_fNRWkHjr8vT/view) to have
-an overview of the big picture.
+an overview of the big picture for the CreateMusicUseCase and FindMusicUseCase use cases.
 
 ##### The app is using Symfony 3.4 to manage details like:
 - HTTP Request / Response
