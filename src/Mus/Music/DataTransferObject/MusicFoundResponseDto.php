@@ -3,6 +3,7 @@
 namespace Mus\Music\DataTransferObject;
 
 use Mus\Music\Entity\Music;
+use Mus\Music\Exception\MusicNotSavedException;
 
 class MusicFoundResponseDto extends MusicDto
 {
@@ -10,6 +11,9 @@ class MusicFoundResponseDto extends MusicDto
     public function __construct(Music $music)
     {
         $this->id = $music->getId();
+        if($this->id === null){
+            throw new MusicNotSavedException("You can't create a MusicFoundResponseDto from a Music without an id.");
+        }
         $this->durationInSeconds = $music->getDurationInSeconds();
         $this->title = $music->getTitle();
         $this->lyrics = $music->getLyrics();
