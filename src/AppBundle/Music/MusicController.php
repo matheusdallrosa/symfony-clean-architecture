@@ -93,4 +93,25 @@ class MusicController
             ]
         );
     }
+
+    /**
+     * @Route(
+     *     path = "/music/{id}",
+     *     methods = "DELETE",
+     *     requirements={"id"="\d+"}
+     * )
+     */
+    public function removeMusicByIdAction(
+        int $id,
+        MusicService $musicService
+    ): Response
+    {
+        try{
+            $musicService->removeMusicById($id);
+        }catch(MusicNotFoundException $e){
+            return new Response('', Response::HTTP_NOT_FOUND);
+        }
+
+        return new Response('', Response::HTTP_NO_CONTENT);
+    }
 }

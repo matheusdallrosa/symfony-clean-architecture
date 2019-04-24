@@ -31,4 +31,11 @@ class MusicAccess implements MusicAccessGateway {
     {
         return $this->musicRepository->findOneBy([ 'id' => $id ]);
     }
+
+    public function remove(Music $music): void
+    {
+        $this->entityManager->remove($music);
+        $this->entityManager->flush();
+    }
+
 }

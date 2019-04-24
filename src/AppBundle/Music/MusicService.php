@@ -8,6 +8,7 @@ use Mus\Music\DataTransferObject\CreateMusicResponseDto;
 use Mus\Music\DataTransferObject\MusicFoundResponseDto;
 use Mus\Music\FindMusicUseCase;
 use Mus\Music\Gateway\MusicAccessGateway;
+use Mus\Music\RemoveMusicUseCase;
 
 class MusicService
 {
@@ -29,5 +30,11 @@ class MusicService
     {
         $findMusicUseCase = new FindMusicUseCase($this->musicAccess);
         return $findMusicUseCase->findById($id);
+    }
+
+    public function removeMusicById(int $id): void
+    {
+        $removeMusicUseCase = new RemoveMusicUseCase($this->musicAccess);
+        $removeMusicUseCase->removeById($id);
     }
 }
