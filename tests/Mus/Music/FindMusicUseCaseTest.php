@@ -13,7 +13,7 @@ class FindMusicUseCaseTest extends TestCase
     public function testShouldFindAMusicWithTheGivenId(): void
     {
         $mockedMusicAccessGateway = $this->getMockBuilder(MusicAccessGateway::class)
-            ->setMethods(['save', 'findById'])
+            ->setMethods(['save', 'findById', 'remove'])
             ->getMock();
 
         $id = 1;
@@ -59,7 +59,7 @@ class FindMusicUseCaseTest extends TestCase
     public function testShouldReceiveAMusicNotFoundException(): void
     {
         $mockedMusicAccessGateway = $this->getMockBuilder(MusicAccessGateway::class)
-            ->setMethods(['save', 'findById'])
+            ->setMethods(['save', 'findById', 'remove'])
             ->getMock();
 
         $id = 1;
