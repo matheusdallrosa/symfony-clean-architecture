@@ -61,7 +61,7 @@ class CreateMusicUseCaseTest extends TestCase {
         );
     }
 
-    public function testShouldReceiveAnMusicNotSavedException(): void{
+    public function testShouldReceiveAMusicNotSavedException(): void{
         $mockedMusicAccessGateway = $this->getMockBuilder(MusicAccessGateway::class)
             ->setMethods(['save', 'findById', 'remove'])
             ->getMock();
